@@ -1,4 +1,17 @@
-
+/**
+*
+* Solution to course project # 10
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2020/2021
+*
+* @author Daniel Halachev
+* @idnumber 62547
+* @compiler VC
+*
+* <main executable code>
+*
+*/
 
 #include <iostream>
 #include <Windows.h>//to remove Console text
@@ -41,6 +54,16 @@ void clear()
     system("clear");
 #endif
 }
+int getMinutes(int totalSeconds)
+{
+    if (totalSeconds < 0) return -1;
+    return totalSeconds / 60;
+}
+int getSeconds(int totalSeconds)
+{
+    return totalSeconds - getMinutes(totalSeconds)*60;
+}
+#pragma region NumberPrintingFuctions
 void printOne(int lineNumber)
 {
     switch (lineNumber)
@@ -221,16 +244,8 @@ void printZero(int lineNumber)
     }
     return;
 }
-int getMinutes(int totalSeconds)
-{
-    if (totalSeconds < 0) return -1;
-    return totalSeconds / 60;
-}
-int getSeconds(int totalSeconds)
-{
-    return totalSeconds - getMinutes(totalSeconds)*60;
-}
-void printLine(int number, int lineNumber)
+#pragma endregion NumberPrintingFuctions
+void printNumber(int number, int lineNumber)
 {
     switch (number)
     {
@@ -245,13 +260,339 @@ void printLine(int number, int lineNumber)
         case 9:printNine(lineNumber); break;
         case 0:printZero(lineNumber); break;
     }
+    return;
 }
-void printNumber(int minutes, int seconds)
-{
 
+void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
+                        int minFirstDigit, int minSecondDigit, int minThirdDigit,
+                        int secFirstDigit, int secSecondDigit)
+{
+    for (int i = 1; i < 5; i++)
+    {
+        cout << sideDistanceStr;
+        printNumber(minFirstDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(minSecondDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(minThirdDigit, i);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, i);
+        cout << sideDistanceStr;
+        //got to the next line
+        cout << endl;
+    }
+    //break the 'for' cycle in order to skip 11 'if' checks
+    //whether the lines are '5' or '7', where the min-sec separator is
+
+    //print line 5 because it contains the min-sec separator
+    cout << sideDistanceStr;
+    printNumber(minFirstDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(minSecondDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 5);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 5);
+    cout << sideDistanceStr;
+    cout << endl; //end line 5
+
+    //line 6 is normal -->Print it
+    cout << sideDistanceStr;
+    printNumber(minFirstDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(minSecondDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 6);
+    cout << distBetweenNumsStr;
+    cout << " ";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 6);
+    cout << sideDistanceStr;
+    cout << endl;//end line 6
+
+    //Print line 7 because it contains the min-sec separator symbol
+    cout << sideDistanceStr;
+    printNumber(minFirstDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(minSecondDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 7);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 7);
+    cout << sideDistanceStr;
+    cout << endl;//end line 7
+
+    //Lines 8-11 are normal --> Print them
+    for (int i = 8; i < 12; i++)
+    {
+        cout << sideDistanceStr;
+        printNumber(minFirstDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(minSecondDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(minThirdDigit, 5);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, 5);
+        cout << sideDistanceStr;
+        cout << endl;//end line
+    }
+}
+void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
+                        int minSecondDigit, int minThirdDigit,
+                        int secFirstDigit, int secSecondDigit)
+{
+    //Lines 1-4 are normal --> Print them
+    for (int i = 1; i < 5; i++)
+    {
+        cout << distBetweenNumsStr;
+        printNumber(minSecondDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(minThirdDigit, i);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, i);
+        cout << sideDistanceStr;
+        //got to the next line
+        cout << endl;
+    }
+    //break the 'for' cycle in order to skip 11 'if' checks
+    //whether the lines are '5' or '7', where the min-sec separator is
+
+    //print line 5 because it contains the min-sec separator
+    cout << sideDistanceStr;
+    printNumber(minSecondDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 5);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 5);
+    cout << sideDistanceStr;
+    cout << endl; //end line 5
+
+    //line 6 is normal -->Print it
+    cout << sideDistanceStr;
+    printNumber(minSecondDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 6);
+    cout << distBetweenNumsStr;
+    cout << " ";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 6);
+    cout << sideDistanceStr;
+    cout << endl;//end line 6
+
+    //Print line 7 because it contains the min-sec separator symbol
+    cout << sideDistanceStr;
+    printNumber(minSecondDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(minThirdDigit, 7);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 7);
+    cout << sideDistanceStr;
+    cout << endl;//end line 7
+
+    //Lines 8-11 are normal --> Print them
+    for (int i = 8; i < 12; i++)
+    {
+        cout << sideDistanceStr;
+        printNumber(minSecondDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(minThirdDigit, 5);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, 5);
+        cout << sideDistanceStr;
+        cout << endl;//end line
+    }
+    return;
+}
+void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
+                         int minThirdDigit, int secFirstDigit, int secSecondDigit)
+{
+    //Lines 1-4 are normal --> Print them
+    for (int i = 1; i < 5; i++)
+    {
+        cout << distBetweenNumsStr;
+        printNumber(minThirdDigit, i);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, i);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, i);
+        cout << sideDistanceStr;
+        //got to the next line
+        cout << endl;
+    }
+    //break the 'for' cycle in order to skip 11 'if' checks
+    //whether the lines are '5' or '7', where the min-sec separator is
+
+    //print line 5 because it contains the min-sec separator
+    cout << sideDistanceStr;
+    printNumber(minThirdDigit, 5);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 5);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 5);
+    cout << sideDistanceStr;
+    cout << endl; //end line 5
+
+    //line 6 is normal -->Print it
+    cout << sideDistanceStr;
+    printNumber(minThirdDigit, 6);
+    cout << distBetweenNumsStr;
+    cout << " ";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 6);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 6);
+    cout << sideDistanceStr;
+    cout << endl;//end line 6
+
+    //Print line 7 because it contains the min-sec separator symbol
+    cout << sideDistanceStr;
+    printNumber(minThirdDigit, 7);
+    cout << distBetweenNumsStr;
+    cout << "\u2593";
+    cout << distBetweenNumsStr;
+    printNumber(secFirstDigit, 7);
+    cout << distBetweenNumsStr;
+    printNumber(secSecondDigit, 7);
+    cout << sideDistanceStr;
+    cout << endl;//end line 7
+
+    //Lines 8-11 are normal --> Print them
+    for (int i = 8; i < 12; i++)
+    {
+        cout << sideDistanceStr;
+        printNumber(minThirdDigit, 5);
+        cout << distBetweenNumsStr;
+        cout << " ";
+        cout << distBetweenNumsStr;
+        printNumber(secFirstDigit, 5);
+        cout << distBetweenNumsStr;
+        printNumber(secSecondDigit, 5);
+        cout << sideDistanceStr;
+        cout << endl;//end line
+    }
+    return;
+}
+void printClock(int totalSeconds, int distBetweenNums, int consoleWidth=80)
+{
+    int minutes = getMinutes(totalSeconds);
+    int seconds = getSeconds(totalSeconds);
+    int minFirstDigit = minutes / 100;
+    int minSecondDigit = (minutes / 10) % 10;
+    int minThirdDigit = minutes % 10;
+    int secFirstDigit = seconds / 10;
+    int secSecondDigit = seconds % 10;
+    int sideDistance;
+    string sideDistanceStr=" ";
+    string distBetweenNumsStr = " ";
+
+    if (minFirstDigit == 0)
+    {
+        if (minSecondDigit == 0)
+        {
+            sideDistance = (consoleWidth - 30 - 3 * distBetweenNums)/2;
+        }
+        else sideDistance = (consoleWidth - 30 - 4 * distBetweenNums) / 2;
+    }
+    else sideDistance = (consoleWidth - 30 - 5 * distBetweenNums) / 2;
+    for (int i = 1; i < sideDistance; i++)
+    {
+        sideDistanceStr = sideDistanceStr + " ";
+    }
+    for (int i = 1; i < distBetweenNums; i++)
+    {
+        distBetweenNumsStr = distBetweenNumsStr + " ";
+    }
+
+    if (minFirstDigit == 0)
+    {
+        if (minSecondDigit == 0)
+        {
+            printClockThreeDigits(sideDistanceStr, distBetweenNumsStr, minThirdDigit, secFirstDigit, secSecondDigit);
+        }
+        else
+        {
+            printClockFourDigits(sideDistanceStr, distBetweenNumsStr, minSecondDigit, minThirdDigit, secFirstDigit, secSecondDigit);
+        }
+    }
+    else
+    {
+        printClockFiveDigits(sideDistanceStr, distBetweenNumsStr, minFirstDigit, minSecondDigit, minThirdDigit, secFirstDigit, secSecondDigit);
+    }
+    return;
+}
+void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWidth = 80)
+{
+    int i = totalSeconds;
+    for (i ; i > 10; i--)
+    {
+        printClock(totalSeconds, distBetweenNums, consoleSymbolWidth);
+        //sleep for a while
+    }
+    //set Console color to red
+    for (i = 10; i > 0; i--)
+    {
+        printClock(totalSeconds, distBetweenNums, consoleSymbolWidth);
+        //beep
+        //sleep for a while
+    }
+    
+    string sideDistanceStr = " ";
+    string distBetweenNumsStr = " ";
+    int sideDistance = (consoleSymbolWidth - 30 - 5 * distBetweenNums) / 2;
+    for (int i = 1; i < sideDistance; i++)
+    {
+        sideDistanceStr = sideDistanceStr + " ";
+    }
+    for (int i = 1; i < distBetweenNums; i++)
+    {
+        distBetweenNumsStr = distBetweenNumsStr + " ";
+    }
+    printClockFiveDigits(sideDistanceStr, distBetweenNumsStr, 0, 0, 0, 0, 0);
 }
 int main()
 {
+    int consoleSymbolWidth = 80;
+    int consoleSymbolHeight = 25;
     //setupConsole(2000, 300);
     int numberOfSeconds = 0;
     do
@@ -261,16 +602,7 @@ int main()
     } 
     while (numberOfSeconds < 0);
     clear();
-    for (int i = 1; i < 12; i++)
-    {
-        printOne(i);
-        cout << "    ";
-        printTwo(i);
-        cout << "    ";
-        printThree(i);
-        cout << "    ";
-        printFour(i);
-        cout << "    ";
-        cout << endl;
-    }
+    int distanceBetweenNums = 4;
+    performTimer(numberOfSeconds, distanceBetweenNums, consoleSymbolWidth);
+    return 0;
 }
