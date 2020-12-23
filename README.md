@@ -1,6 +1,6 @@
 # ASCII-Timer
-
 ASCII Timer University assignment
+
 /**
 *  
 * Solution to course project # 10
