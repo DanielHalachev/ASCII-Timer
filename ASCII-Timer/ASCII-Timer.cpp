@@ -558,6 +558,7 @@ void printClock(int totalSeconds, int distBetweenNums, int consoleWidth=80)
     {
         printClockFiveDigits(sideDistanceStr, distBetweenNumsStr, minFirstDigit, minSecondDigit, minThirdDigit, secFirstDigit, secSecondDigit);
     }
+    cout << endl << endl << endl << endl << endl << endl << endl;
     return;
 }
 void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWidth = 80)
@@ -567,7 +568,9 @@ void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWi
     {
         if (i < 10)
         {
-            //change color to red
+            HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+            SetConsoleTextAttribute(hStdOut, FOREGROUND_RED);
+            cout << '\a';
         }
         printClock(i, distBetweenNums, consoleSymbolWidth);
         Sleep(1000);
@@ -587,12 +590,15 @@ void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWi
     }
     cout << endl << endl << endl << endl << endl << endl << endl;
     printClockFiveDigits(sideDistanceStr, distBetweenNumsStr, 0, 0, 0, 0, 0);
+    cout << endl << endl << endl << endl << endl << endl << endl;
+    //cout << '\a'<<'\a'<<'\a';
+    Beep(750, 1500);
 }
 int main()
 {
     int consoleSymbolWidth = 80;
     int consoleSymbolHeight = 25;
-    setupConsole(2500, 300);
+    setupConsole(1680, 360);
     int numberOfSeconds = 0;
     do
     {
