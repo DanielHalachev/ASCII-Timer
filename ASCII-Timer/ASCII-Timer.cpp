@@ -61,6 +61,14 @@ void clear()
 	system("clear");
 #endif
 }
+void longBeep()
+{
+#if defined(_WIN32)
+	Beep(750, 1500);
+#elif defined(__linux__)
+	cout << \a << \a << \a << \a << \a << \a << \a;
+#endif 
+}
 int getMinutes(int totalSeconds)
 {
 	if (totalSeconds < 0) return -1;
@@ -273,6 +281,9 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 	int minFirstDigit, int minSecondDigit, int minThirdDigit,
 	int secFirstDigit, int secSecondDigit)
 {
+	//due to the min-sec separator being one sign, side distances are not equal
+	//we use '\b' to fit inside the console width limit
+
 	//Split the 11-iterations for cycle in order to omit 11 "if" checks
 	//whether the lines are '5' or '7', where the min-sec separator is
 	for (int i = 1; i < 5; i++)
@@ -290,8 +301,6 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr;
-		//go to the next line
-		//cout << endl;
 	}
 
 	//print line 5 because it contains the min-sec separator
@@ -308,7 +317,6 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 5);
 	cout << sideDistanceStr;
-	//cout << endl; //end line 5
 
 	//line 6 is normal -->Print it
 	cout << sideDistanceStr << '\b';
@@ -324,7 +332,6 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 6);
 	cout << sideDistanceStr;
-	//cout << endl;//end line 6
 
 	//Print line 7 because it contains the min-sec separator symbol
 	cout << sideDistanceStr << '\b';
@@ -340,7 +347,6 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 7);
 	cout << sideDistanceStr;
-	//cout << endl;//end line 7
 
 	//Lines 8-11 are normal --> Print them
 	for (int i = 8; i < 12; i++)
@@ -358,7 +364,6 @@ void printClockFiveDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr;
-		//cout << endl;//end line
 	}
 	return;
 }
@@ -366,6 +371,11 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 	int minSecondDigit, int minThirdDigit,
 	int secFirstDigit, int secSecondDigit)
 {
+	//due to the min-sec separator being one sign, side distances are not equal
+	//we use '\b' to fit inside the console width limit
+
+	//Split the 11-iterations for cycle in order to omit 11 "if" checks
+	//whether the lines are '5' or '7', where the min-sec separator is
 	//Lines 1-4 are normal --> Print them
 	for (int i = 1; i < 5; i++)
 	{
@@ -380,11 +390,7 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr << '\b';
-		//got to the next line
-		//cout << endl;
 	}
-	//break the 'for' cycle in order to skip 11 'if' checks
-	//whether the lines are '5' or '7', where the min-sec separator is
 
 	//print line 5 because it contains the min-sec separator
 	cout << sideDistanceStr;
@@ -398,7 +404,6 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 5);
 	cout << sideDistanceStr << '\b';
-	//cout << endl; //end line 5
 
 	//line 6 is normal -->Print it
 	cout << sideDistanceStr;
@@ -412,7 +417,6 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 6);
 	cout << sideDistanceStr << '\b';
-	//cout << endl;//end line 6
 
 	//Print line 7 because it contains the min-sec separator symbol
 	cout << sideDistanceStr;
@@ -426,7 +430,6 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 7);
 	cout << sideDistanceStr << '\b';
-	//cout << endl;//end line 7
 
 	//Lines 8-11 are normal --> Print them
 	for (int i = 8; i < 12; i++)
@@ -442,13 +445,17 @@ void printClockFourDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr << '\b';
-		//cout << endl;//end line
 	}
 	return;
 }
 void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 	int minThirdDigit, int secFirstDigit, int secSecondDigit)
 {
+	//due to the min-sec separator being one sign, side distances are not equal
+	//we use '\b' to fit inside the console width limit
+
+	//Split the 11-iterations for cycle in order to omit 11 "if" checks
+	//whether the lines are '5' or '7', where the min-sec separator is
 	//Lines 1-4 are normal --> Print them
 	for (int i = 1; i < 5; i++)
 	{
@@ -461,11 +468,7 @@ void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr << '\b';
-		//got to the next line
-		//cout << endl;
 	}
-	//break the 'for' cycle in order to skip 11 'if' checks
-	//whether the lines are '5' or '7', where the min-sec separator is
 
 	//print line 5 because it contains the min-sec separator
 	cout << sideDistanceStr;
@@ -477,7 +480,6 @@ void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 5);
 	cout << sideDistanceStr << '\b';
-	//cout << endl; //end line 5
 
 	//line 6 is normal -->Print it
 	cout << sideDistanceStr;
@@ -489,7 +491,6 @@ void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 6);
 	cout << sideDistanceStr << '\b';
-	//cout << endl;//end line 6
 
 	//Print line 7 because it contains the min-sec separator symbol
 	cout << sideDistanceStr;
@@ -501,7 +502,6 @@ void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 	cout << distBetweenNumsStr;
 	printNumber(secSecondDigit, 7);
 	cout << sideDistanceStr << '\b';
-	//cout << endl;//end line 7
 
 	//Lines 8-11 are normal --> Print them
 	for (int i = 8; i < 13; i++)
@@ -515,11 +515,10 @@ void printClockThreeDigits(string sideDistanceStr, string distBetweenNumsStr,
 		cout << distBetweenNumsStr;
 		printNumber(secSecondDigit, i);
 		cout << sideDistanceStr << '\b';
-		//cout << endl;//end line
 	}
 	return;
 }
-void printClock(int totalSeconds, int distBetweenNums, int consoleWidth = 80, int consoleSymbolHeight=25)
+void printClock(int totalSeconds, int distBetweenNums, int consoleWidth = 80, int consoleSymbolHeight = 25)
 {
 	int minutes = getMinutes(totalSeconds);
 	int seconds = getSeconds(totalSeconds);
@@ -531,7 +530,8 @@ void printClock(int totalSeconds, int distBetweenNums, int consoleWidth = 80, in
 	int sideDistance;
 	string sideDistanceStr = " ";
 	string distBetweenNumsStr = " ";
-
+	//30, 40 or 50 is the total width of all timer digits in all three cases
+	//determine the side distance
 	if (minFirstDigit == 0)
 	{
 		//uncomment the following lines if the timer doesn't need to have four numbers
@@ -543,19 +543,21 @@ void printClock(int totalSeconds, int distBetweenNums, int consoleWidth = 80, in
 		sideDistance = (consoleWidth - 40 - 4 * distBetweenNums) / 2;
 	}
 	else sideDistance = (consoleWidth - 50 - 5 * distBetweenNums) / 2;
-
 	for (int i = 1; i < sideDistance; i++)
 	{
 		sideDistanceStr = sideDistanceStr + " ";
 	}
+	//determine the distance between the timer digits
 	for (int i = 1; i < distBetweenNums; i++)
 	{
 		distBetweenNumsStr = distBetweenNumsStr + " ";
 	}
+	//determine the distance above and below the timer digits
 	for (int i = 0; i < (consoleSymbolHeight - 11) / 2; i++)
 	{
 		cout << endl;
 	}
+	//print the clock
 	if (minFirstDigit == 0)
 	{
 		//uncomment the following lines if the timer doesn't have to be with four digits
@@ -574,58 +576,73 @@ void printClock(int totalSeconds, int distBetweenNums, int consoleWidth = 80, in
 	}
 	return;
 }
-void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWidth = 80, int consoleSymbolHeight=25)
+void performTimer(int totalSeconds, int distBetweenNums = 4, int consoleSymbolWidth = 80, int consoleSymbolHeight = 25)
 {
+	//disable mouse clicks and selections in order to avoid pausing
+	disableInput();
 	int i = totalSeconds;
 	//countdown
-	for (i; i >= 0; i--)
+	for (i; i > 9; i--)
 	{
-		if (i < 10)
-		{
-			HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-			SetConsoleTextAttribute(hStdOut, FOREGROUND_RED);
-			cout << '\a';
-		}
 		printClock(i, distBetweenNums, consoleSymbolWidth, consoleSymbolHeight);
+		cout << '\a';
 		Sleep(1000);
 		clear();
 	}
-	//after finish, print out 00:00 and make a beep
+	//break the cycle for the last 9 seconds
+	//print the clock red and make short beeps
+	//this way we avoid many "if" checks
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, FOREGROUND_RED);
+	for (i = 9; i > 0; i--)
+	{
+		printClock(i, distBetweenNums, consoleSymbolWidth, consoleSymbolHeight);
+		cout << '\a';
+		Sleep(1000);
+		clear();
+	}
+	//after finish, print out 00:00 and make a long beep
 	string sideDistanceStr = " ";
 	string distBetweenNumsStr = " ";
 	//40 is the width of all four zeros
+	//calculate the empty strings based on the function parameters
 	int sideDistance = (consoleSymbolWidth - 40 - 4 * distBetweenNums) / 2;
+	//determine the side distances
 	for (int i = 1; i < sideDistance; i++)
 	{
 		sideDistanceStr = sideDistanceStr + " ";
 	}
+	//determine the distance between the timer digits
 	for (int i = 1; i < distBetweenNums; i++)
 	{
 		distBetweenNumsStr = distBetweenNumsStr + " ";
 	}
+	//determine the distance above and below the timer digits
 	for (int i = 0; i < (consoleSymbolHeight - 11) / 2; i++)
 	{
 		cout << endl;
 	}
 	printClockFourDigits(sideDistanceStr, distBetweenNumsStr, 0, 0, 0, 0);
-	//cout << '\a'<<'\a'<<'\a';
-	Beep(750, 1500);
+	longBeep();
+	//restore default console setting, 7 = white
+	SetConsoleTextAttribute(hStdOut, 7);
+	enableInput();
+	return;
 }
 int main()
 {
 	int consoleSymbolWidth = 80;
 	int consoleSymbolHeight = 25;
+	int distanceBetweenNums = 4;
 	setupConsole(80, 25);
 	int numberOfSeconds = 0;
 	do
 	{
-		cout << "Enter number of seconds to count-down: ";
+		cout << "Enter a valid number of seconds to count-down: ";
 		cin >> numberOfSeconds;
-	} while (numberOfSeconds < 0 || numberOfSeconds>9999);
+	}
+	while (numberOfSeconds < 0 || numberOfSeconds>9999);
 	clear();
-	disableInput();
-	int distanceBetweenNums = 4;
 	performTimer(numberOfSeconds, distanceBetweenNums, consoleSymbolWidth);
-	enableInput();
 	return 0;
 }
