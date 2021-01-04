@@ -641,7 +641,7 @@ int main()
 		cout << "Enter a valid number of seconds to count-down: ";
 		cin >> numberOfSeconds;
 	}
-	while (numberOfSeconds < 0 || numberOfSeconds>9999);
+	while (numberOfSeconds < 999 || numberOfSeconds>9999);
 	clear();
 	performTimer(numberOfSeconds, distanceBetweenNums, consoleSymbolWidth);
 	return 0;
