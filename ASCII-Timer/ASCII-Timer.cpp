@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <limits>
 using namespace std;
 void setConsoleSize(int& width, int& height)
 {
@@ -636,12 +637,13 @@ int main()
 	int distanceBetweenNums = 4;
 	setupConsole(80, 25);
 	int numberOfSeconds = 0;
-	do
+	cout << "Enter number of seconds to count-down: ";
+	while (!(cin >> numberOfSeconds) || numberOfSeconds < 1000 || numberOfSeconds > 9999)
 	{
+		cin.clear();
+		cin.ignore((numeric_limits<streamsize>::max)(), '\n');
 		cout << "Enter a valid number of seconds to count-down: ";
-		cin >> numberOfSeconds;
 	}
-	while (numberOfSeconds < 999 || numberOfSeconds>9999);
 	clear();
 	performTimer(numberOfSeconds, distanceBetweenNums, consoleSymbolWidth);
 	return 0;
