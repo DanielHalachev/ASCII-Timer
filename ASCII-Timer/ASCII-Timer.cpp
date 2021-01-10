@@ -9,7 +9,7 @@
 * @idnumber 62547
 * @compiler VC
 *
-* <main executable code>
+* <main code>
 *
 */
 
@@ -35,7 +35,7 @@ void setupConsole(int width, int height)
 {
 	//set size in rows and columns
 	setConsoleSize(width, height);
-	//prevent the user from resizing the console in order to fuck things up
+	//prevent the user from resizing the console
 	HWND consoleWindow = GetConsoleWindow();
 	SetWindowLong(consoleWindow, GWL_STYLE, GetWindowLong(consoleWindow, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 }
